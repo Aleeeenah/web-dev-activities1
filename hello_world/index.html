@@ -3,31 +3,59 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Styled Page</title>
+    
+    <!-- Link to CSS -->
+    <link rel="stylesheet" href="style.css">
 
     <script>
-        const num1 = 10;
-        const num2 = 5;
+        function calculateSum() {
+            const num = parseInt(document.getElementById("numberInput").value);
+            let sum = 0;
+            for (let i = 1; i <= num; i++) {
+                sum += i;
+            }
+            document.getElementById("output").innerText = "Sum: " + sum;
+        }
 
-        const sum = num1 + num2;
-        const difference = num1 - num2;
-        const product = num1 * num2;
-        const quotient  = num1 / num2;
+        function calculateFactorial() {
+            const num = parseInt(document.getElementById("numberInput").value);
+            let fact = 1;
+            for (let i = 1; i <= num; i++) {
+                fact *= i;
+            }
+            document.getElementById("output").innerText = "Factorial: " + fact;
+        }
 
-        console.log("The sum is" , sum);
-        console.log("The difference is" , difference);
-        console.log("The product is" , product);
-        console.log("The quotient is" , quotient);
+        function showOddNumbers() {
+            const num = parseInt(document.getElementById("numberInput").value);
+            let result = "Odd Numbers: ";
+            for (let i = 1; i <= num; i += 2) {
+                result += i + " ";
+            }
+            document.getElementById("output").innerText = result;
+        }
 
-
-       
-
-
-
-       
+        function showEvenNumbers() {
+            const num = parseInt(document.getElementById("numberInput").value);
+            let result = "Even Numbers: ";
+            for (let i = 2; i <= num; i += 2) {
+                result += i + " ";
+            }
+            document.getElementById("output").innerText = result;
+        }
     </script>
 </head>
 <body>
-    
+    <h1>Number Operations</h1>
+    <input type="text" id="numberInput" placeholder="Enter number">
+    <button onclick="calculateSum()">Show Sum</button>
+    <button onclick="calculateFactorial()">Show Factorial</button>
+    <button onclick="showOddNumbers()">Show Odd</button>
+    <button onclick="showEvenNumbers()">Show Even</button>
+
+    <div class="output-container" id="output">
+        Output will appear here.
+    </div>
 </body>
-</html> 
+</html>

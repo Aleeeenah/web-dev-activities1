@@ -1,17 +1,47 @@
-let previousInput = "";
-let operator = "";
-let currentInput = "0";
-
 function setOperator(op) {
-    if (currentInput === "Error") return;
+    if (operator && !operatorPressed) {
+        calculate(); // Perform the existing operation
+    }
+    operator = op;
+    previousInput = currentInput;
+    operatorPressed = true;
+}
 
-    // Prevent entering two operators in a row
-    if (operator !== "" && previousInput !== "") {
-        return; // Do nothing if an operator is already set
+function clearDisplay() {
+    currentInput = "0";
+    operator = null;
+    previousInput = null;
+    operatorPressed = false;
+    updateDisplay();
+}
+
+function calculate() {
+    if (!operator || !previousInput) return;
+
+    const num1 = parseFloat(previousInput);
+    const num2 = parseFloat(currentInput);
+
+    switch (operator) {
+        case "+":
+            currentInput = (num1 + num2).toString();
+            break;
+        case "-":
+            currentInput = (num1 - num2).toString();
+            break;
+        case "*":
+            currentInput = (num1 * num2).toString();
+            break;
+        case "/":
+            currentInput = num2 !== 0 ? (num1 / num2).toString() : "Error";
+            break;
     }
 
-    previousInput = currentInput;
-    currentInput = "0";
-    operator = op;
+    operator = null;
+    previousInput = null;
+    operatorPressed = false;
     updateDisplay();
+}
+
+function updateDisplay() {
+    document.getElementById("display").value = currentInput;
 }
